@@ -1,0 +1,31 @@
+||SASL Exercise: Primlist
+
+||HELPERS
+def inc x = x+1 
+def dec x = x-1
+def mod a b = if a<b then a else mod (a-b) b ||a mod b
+
+||PRIMLSIT
+
+||wrapper
+def prims n = build 2 n
+
+||builds list from s to n checking for prims
+def build s n = if n=1 then nil else if (isPrim s (getList 2 s)) then s:build (inc s) (dec n) else build (inc s) (dec n) 
+
+||creates helperlist
+def getList s n = if n=1 then nil else s:getList (inc s) (dec n) 
+
+||checks for prim
+def isPrim p l = if (mod p (hd l))=0 and (hd l)<p then false else 
+	if (mod p (hd l))=0 and (hd l)=p then true else isPrim p (tl l)
+
+
+def list a = if a > 100 then nil else a:list (a*2)
+
+.
+
+
+||Function Call
+
+list 1
